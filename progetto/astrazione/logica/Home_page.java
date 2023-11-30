@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 //MY_PACKAGE
 import progetto.componenti.Menu;
@@ -34,14 +35,34 @@ public class Home_page extends Menu{
         return  menuPair;
     }
 
-    //FUNZIONALITA CERCA FILE
-    public void cerca__FILE(JMenu m, String titolo_sottoMenu){
+    //FUNZIONALITA CERCA 
+    public void cerca__FILE(JMenu m, String titolo_sottoMenu, boolean solo_directory){
         JMenuItem itemCercaFile = new JMenuItem(titolo_sottoMenu);
         itemCercaFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
-                fc.showOpenDialog(null);
+                JFileChooser fc = new JFileChooser("C:\\Users\\Utente\\Desktop\\prove_java\\prove\\risultatiEditor");
+                
+                if(solo_directory){
+                    fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                } 
+                
+                int result = fc.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File f = new File(fc.getSelectedFile().getAbsolutePath());
+                }
+            }
+        });
+        m.add(itemCercaFile);
+    }
+
+    //APRI EDITOR
+    public void apri__editor(JMenu m, String titolo_sottoMenu){
+        JMenuItem itemCercaFile = new JMenuItem(titolo_sottoMenu);
+        itemCercaFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editor();
             }
         });
         m.add(itemCercaFile);

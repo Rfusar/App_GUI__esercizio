@@ -26,14 +26,32 @@ public class Schermo extends Pagina{
         int size[] = {500, 500};
         JFrame f = getFrame(); 
         setFrame(f, "HOME", size, true);
-        String titoli[] = {"File", "Cerca", "Trova"};
+        String titoli[] = {"File", "Editor"};
 
         MenuPair mP =  new Home_page().campi_menu(titoli, new JMenuBar());
 
-        //JMENU
-        new Home_page().cerca__FILE(mP.getMenus()[0], "Cerca file");
+
+        //FILE
+        new Home_page().cerca__FILE(mP.getMenus()[0], "Cerca file", false);
+        new Home_page().cerca__FILE(mP.getMenus()[0], "Cerca cartella", true);
+        new Home_page().apri__editor(mP.getMenus()[1], "Apri");
+        
+
+
+
 
         f.setJMenuBar(mP.getMenuBar());
+
+        f.setVisible(true);
+    }
+
+    public void editor(){
+        int size[] = {500, 600};
+        JFrame f = getFrame(); 
+        setFrame(f, "EDITOR", size, false);
+        new Menu().componenti__editor(f);
+        
+
 
         f.setVisible(true);
     }

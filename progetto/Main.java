@@ -7,7 +7,8 @@ import progetto.componenti.Schermo;
 public class Main{
 
     public static void main(String[] args){ 
-    new Schermo().login();
+    //new Schermo().login();
+    new Schermo().frame();
     
         
     /*Database database = new Database();

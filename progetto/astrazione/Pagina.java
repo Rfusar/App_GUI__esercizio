@@ -10,7 +10,7 @@ public class Pagina {
         this.frame = frame;
         this.frame.setTitle(titolo);
         this.frame.setSize(size[0], size[1]);
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE );
         this.frame.setResizable(ridimesiona);
         
     }
