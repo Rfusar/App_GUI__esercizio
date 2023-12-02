@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "progetto\\librerie\\javax.mail.jar",
+        "progetto\\librerie\\postgresql-42.7.0.jar"
+    ]
+}

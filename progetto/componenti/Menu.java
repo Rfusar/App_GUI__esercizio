@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 //MY_PACKAGE
 import progetto.astrazione.logica.Login;
 import progetto.astrazione.logica.Editor;
+import progetto.astrazione.logica.Email;
 
 
 
@@ -76,5 +77,61 @@ public class Menu extends Schermo{
 
         f.setContentPane(pagina);
     }
+
+
+    public void componenti__email(JFrame f) {
+        JLabel L_utenteEmail = new JLabel("inserisci email: ");
+        JLabel L_destinatarioEmail = new JLabel("a chi: ");
+        JTextField utenteEmail = new JTextField(25);
+        JTextField destinatarioEmail = new JTextField(25);
+        
+        JLabel titolo_doc = new JLabel("titolo: ");
+        JTextField titolo = new JTextField(25);
+
+        JTextArea corpo = new JTextArea(40, 40);
+        JScrollPane scrollPane = new JScrollPane(corpo);
+        
+        JButton invia = new JButton("Invia");
+        
+        JTextField utentePassword = new JTextField(25);
+        
+        //new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
+        
+
+        //impaginazione
+        JPanel pagina = new JPanel(new GridLayout(6, 2, 3, 0));
+
+        JPanel p_intestazuine = new JPanel(new GridLayout(2,4));
+        JPanel p_email = new JPanel(new GridBagLayout());
+        JPanel p_textArea = new JPanel();
+        JPanel p_buttons = new JPanel(new GridBagLayout());
+        JPanel p_password = new JPanel(new GridBagLayout());
+
+        p_intestazuine.add(L_utenteEmail);
+        p_intestazuine.add(utenteEmail);
+        p_intestazuine.add(L_destinatarioEmail);
+        p_intestazuine.add(destinatarioEmail);
+
+        p_email.add(titolo_doc);
+        p_email.add(titolo);
+
+        p_textArea.add(scrollPane);
+        
+        p_buttons.add(invia);
+
+        p_password.add(utentePassword);
+
+
+        pagina.add(p_intestazuine);
+        pagina.add(p_email);
+        pagina.add(p_textArea);
+        pagina.add(p_buttons);
+        pagina.add(p_password);
+
+        f.setContentPane(pagina);
+    }
+
+
+
 
 }

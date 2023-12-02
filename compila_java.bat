@@ -9,7 +9,8 @@ echo.
 echo.
 set /p n=":"
 if "%n%" == "compila-test" (
-    javac ^
+    javac -cp ".;progetto\librerie\javax.mail.jar;progetto\librerie\postgresql-42.7.0.jar" ^
+    ^
     progetto\Main.java ^
     ^
     progetto\astrazione\Pagina.java ^
@@ -17,6 +18,7 @@ if "%n%" == "compila-test" (
     ^
     progetto\astrazione\logica\Login.java ^
     progetto\astrazione\logica\Home_page.java ^
+    progetto\astrazione\logica\Editor.java ^
     ^
     progetto\astrazione\variabili\MenuPair.java ^
     ^
@@ -24,10 +26,13 @@ if "%n%" == "compila-test" (
     progetto\componenti\Menu.java ^
     -d target
 
+echo COMPILAZIONE FINITA, AVVIO ...
+
 cd target
-java -cp .;progetto\astrazione\postgresql-42.7.0.jar progetto.Main
+java -cp ".;progetto\librerie\javax.mail.jar;progetto\librerie\postgresql-42.7.0.jar." progetto.Main 
 
 cd ..
+pause
 cls
 
 ) else if "%n%" == "eseguibile" (

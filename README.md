@@ -1,2 +1,3 @@
 ### Cose da sistemare
-1. connessione al DB postgres --> approfondire jdbc
+# 1. Codice in generale 
+  2. connessione al DB postgres --> approfondire jdbc

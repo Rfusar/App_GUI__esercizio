@@ -8,7 +8,6 @@ import javax.swing.JMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 //MY_PACKAGE
 import progetto.componenti.Menu;
@@ -49,7 +48,7 @@ public class Home_page extends Menu{
                 
                 int result = fc.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    File f = new File(fc.getSelectedFile().getAbsolutePath());
+
                 }
             }
         });
@@ -68,5 +67,22 @@ public class Home_page extends Menu{
         m.add(itemCercaFile);
     }
 
-    
+
+
+
+
+
+    //APRI EMAIL
+    public void apri__email(JMenu m, String titolo_sottoMenu){
+        JMenuItem itemCercaFile = new JMenuItem(titolo_sottoMenu);
+        itemCercaFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                invioEmail();
+            }
+        });
+        m.add(itemCercaFile);
+    }
+
+
 }
