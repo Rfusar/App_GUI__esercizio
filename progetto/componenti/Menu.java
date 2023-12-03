@@ -2,6 +2,7 @@ package progetto.componenti;
 
 
 
+import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
@@ -18,10 +19,13 @@ import javax.swing.JTextField;
 import progetto.astrazione.logica.Login;
 import progetto.astrazione.logica.Editor;
 import progetto.astrazione.logica.Email;
+import progetto.componenti.astrazione.CustomLayoutManager;
 
 
 
 public class Menu extends Schermo{
+
+    private CustomLayoutManager cLM = new CustomLayoutManager();
 
     public void componenti_login(JFrame f){
 
@@ -36,9 +40,9 @@ public class Menu extends Schermo{
 
         JButton b = new JButton("Login");
 
-
-        JComponent componenti[] = {l0, t0, l1, t1, b};
-        for(JComponent a : componenti){ p0.add(a); }
+        //A SCHERMO
+        JComponent componenti[] = cLM.creaArray(l0, t0, l1, t1, b);
+        cLM.aggiungiElementoAlPannello(p0, componenti);
         p1.add(p0);
         f.setContentPane(p1);
 
@@ -47,6 +51,7 @@ public class Menu extends Schermo{
 
 
     public void componenti__editor(JFrame f) {
+
         JLabel nome_file = new JLabel("nome file: ");
         JTextField titolo = new JTextField(25);
         JTextArea area = new JTextArea(40, 40);
@@ -63,75 +68,79 @@ public class Menu extends Schermo{
         JPanel p_textArea = new JPanel();
         JPanel p_buttons = new JPanel(new GridBagLayout());
 
-        p_titolo.add(nome_file);
-        p_titolo.add(titolo);
+        //A SCHERMO
+        JComponent array___p_titolo[] = cLM.creaArray( nome_file, titolo );
+        cLM.aggiungiElementoAlPannello(p_titolo, array___p_titolo);
 
         p_textArea.add(scrollPane);
 
-        p_buttons.add(save);
-        p_buttons.add(read);
+        JComponent array___p_buttons[] = cLM.creaArray( save, read );
+        cLM.aggiungiElementoAlPannello(p_buttons, array___p_buttons);
 
-        pagina.add(p_titolo);
-        pagina.add(p_textArea);
-        pagina.add(p_buttons);
+        JComponent array___pagina[] = cLM.creaArray( p_titolo, p_textArea, p_buttons );
+        cLM.aggiungiElementoAlPannello(pagina, array___pagina);
 
         f.setContentPane(pagina);
     }
 
 
     public void componenti__email(JFrame f) {
-        JLabel L_utenteEmail = new JLabel("inserisci email: ");
+        JLabel L_utenteEmail = new JLabel("email: ");
+        JTextField utenteEmail = new JTextField(15);
+
+        JLabel L_utentePassword = new JLabel("password: ");
+        JTextField utentePassword = new JTextField(15);
+        
         JLabel L_destinatarioEmail = new JLabel("a chi: ");
-        JTextField utenteEmail = new JTextField(25);
         JTextField destinatarioEmail = new JTextField(25);
         
         JLabel titolo_doc = new JLabel("titolo: ");
         JTextField titolo = new JTextField(25);
 
-        JTextArea corpo = new JTextArea(40, 40);
+        JTextArea corpo = new JTextArea(30,30);
         JScrollPane scrollPane = new JScrollPane(corpo);
+        
         
         JButton invia = new JButton("Invia");
         
-        JTextField utentePassword = new JTextField(25);
         
-        //new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
+        new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
         
-
+        
         //impaginazione
-        JPanel pagina = new JPanel(new GridLayout(6, 2, 3, 0));
-
-        JPanel p_intestazuine = new JPanel(new GridLayout(2,4));
-        JPanel p_email = new JPanel(new GridBagLayout());
-        JPanel p_textArea = new JPanel();
-        JPanel p_buttons = new JPanel(new GridBagLayout());
-        JPanel p_password = new JPanel(new GridBagLayout());
-
-        p_intestazuine.add(L_utenteEmail);
-        p_intestazuine.add(utenteEmail);
-        p_intestazuine.add(L_destinatarioEmail);
-        p_intestazuine.add(destinatarioEmail);
-
-        p_email.add(titolo_doc);
-        p_email.add(titolo);
-
-        p_textArea.add(scrollPane);
+        JPanel p_intestazione__utente = new JPanel();  
+        JPanel p_intestazione = new JPanel();                           
+        JPanel p_titolo = new JPanel(); 
+        JPanel p_button = new JPanel();
         
-        p_buttons.add(invia);
+        JPanel TOP_intestazione = new JPanel(new GridLayout(4,1));
 
-        p_password.add(utentePassword);
+        //A SCHERMO
+        JComponent array___p_intestazione__utente[] =  cLM.creaArray(
+            L_utenteEmail, utenteEmail, L_utentePassword, utentePassword
+            );
+        cLM.aggiungiElementoAlPannello(p_intestazione__utente, array___p_intestazione__utente);
+
+        JComponent array___p_intestazione[] =  cLM.creaArray(
+            L_destinatarioEmail, destinatarioEmail
+        );
+        cLM.aggiungiElementoAlPannello(p_intestazione, array___p_intestazione);
+
+        JComponent array___p_titolo[] =  cLM.creaArray(
+            titolo_doc, titolo
+        );
+        cLM.aggiungiElementoAlPannello(p_titolo, array___p_titolo);
+        
+        JComponent array___TOP_intestazione[] =  cLM.creaArray(
+            p_intestazione__utente, p_intestazione, p_titolo
+        );
+        cLM.aggiungiElementoAlPannello(TOP_intestazione, array___TOP_intestazione);
+      
+        p_button.add(invia);
 
 
-        pagina.add(p_intestazuine);
-        pagina.add(p_email);
-        pagina.add(p_textArea);
-        pagina.add(p_buttons);
-        pagina.add(p_password);
-
-        f.setContentPane(pagina);
+        f.add(TOP_intestazione, BorderLayout.NORTH);
+        f.add(scrollPane, BorderLayout.CENTER);
+        f.add(p_button, BorderLayout.SOUTH);
     }
-
-
-
-
 }

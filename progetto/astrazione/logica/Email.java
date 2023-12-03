@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 public class Email {
+
     public void sendMail(JButton b, JTextField eU, JTextField pU, JTextField eD, JTextField oE, JTextArea cE ){
         b.addActionListener(new ActionListener() {
             String emailUtente = eU.getText();
@@ -51,7 +52,6 @@ public class Email {
 
                     // Invio del messaggio
                     Transport.send(message);
-
                 } 
                 catch (MessagingException x) {
                     x.printStackTrace();

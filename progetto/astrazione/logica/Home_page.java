@@ -78,7 +78,7 @@ public class Home_page extends Menu{
         itemCercaFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invioEmail();
+                Email();
             }
         });
         m.add(itemCercaFile);
