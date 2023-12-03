@@ -104,7 +104,7 @@ public class Menu extends Schermo{
         JButton invia = new JButton("Invia");
         
         
-        new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
+        //new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
         
         
         //impaginazione
