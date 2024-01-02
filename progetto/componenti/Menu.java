@@ -95,7 +95,10 @@ public class Menu extends Schermo{
         JTextField destinatarioEmail = new JTextField(25);
         
         JLabel titolo_doc = new JLabel("titolo: ");
-        JTextField titolo = new JTextField(25);
+        JTextField titolo = new JTextField(15);
+
+        JLabel file_doc = new JLabel("Invio file: ");
+        JTextField file = new JTextField(15);
 
         JTextArea corpo = new JTextArea(30,30);
         JScrollPane scrollPane = new JScrollPane(corpo);
@@ -104,7 +107,7 @@ public class Menu extends Schermo{
         JButton invia = new JButton("Invia");
         
         
-        //new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo);
+        new Email().sendMail(invia, utenteEmail, utentePassword, destinatarioEmail, titolo, corpo, file);
         
         
         //impaginazione
@@ -127,7 +130,7 @@ public class Menu extends Schermo{
         cLM.aggiungiElementoAlPannello(p_intestazione, array___p_intestazione);
 
         JComponent array___p_titolo[] =  cLM.creaArray(
-            titolo_doc, titolo
+            titolo_doc, titolo, file_doc, file
         );
         cLM.aggiungiElementoAlPannello(p_titolo, array___p_titolo);
         

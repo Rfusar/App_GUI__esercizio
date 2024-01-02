@@ -1,5 +1,9 @@
 @echo off
 
+set path_astrazione="progetto\astrazione"
+set path_componenti="progetto\componenti"
+
+
 :ini
 cls
 echo eseguibile
@@ -9,34 +13,23 @@ echo.
 echo.
 set /p n=":"
 if "%n%" == "compila-test" (
-    javac -cp ";progetto\librerie\javax.mail.jar;progetto\librerie\postgresql-42.7.0.jar" ^
-    ^
-    progetto\Main.java ^
-    ^
-    progetto\astrazione\logica\Editor.java ^
-    progetto\astrazione\logica\Email.java ^
-    progetto\astrazione\logica\Home_page.java ^
-    progetto\astrazione\logica\Login.java ^
-    ^
-    progetto\astrazione\variabili\MenuPair.java ^
-    ^
-    progetto\astrazione\Database.java ^
-    progetto\astrazione\Pagina.java ^
-    ^
-    progetto\componenti\astrazione\CustomLayoutManager.java ^
-    ^
-    progetto\componenti\Menu.java ^
-    progetto\componenti\Schermo.java ^
-    ^
-    -d target
+    javac progetto\Main.java ^
+    %path_astrazione%\logica\Editor.java ^
+    %path_astrazione%\logica\Email.java ^
+    %path_astrazione%\logica\Home_page.java ^
+    %path_astrazione%\logica\Login.java ^
+    %path_astrazione%\variabili\MenuPair.java ^
+    %path_astrazione%\Database.java ^
+    %path_astrazione%\Pagina.java ^
+    %path_componenti%\astrazione\CustomLayoutManager.java ^
+    %path_componenti%\Menu.java ^
+    %path_componenti%\Schermo.java -d target
 
 echo COMPILAZIONE FINITA, AVVIO ...
 
 cd target
-java -cp ";progetto\librerie\javax.mail.jar;progetto\librerie\postgresql-42.7.0.jar" progetto.Main 
-
+java progetto.Main 
 cd ..
-pause
 cls
 
 ) else if "%n%" == "eseguibile" (
